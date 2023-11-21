@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @requisicao %>
+
+<div>
+  <%= link_to "Edit this requisicao", edit_requisicao_path(@requisicao) %> |
+  <%= link_to "Back to requisicaos", requisicaos_path %>
+
+  <%= button_to "Destroy this requisicao", @requisicao, method: :delete %>
+</div>

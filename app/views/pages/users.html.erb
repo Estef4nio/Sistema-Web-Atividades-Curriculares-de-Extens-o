@@ -1,0 +1,25 @@
+<h1>Pages#users</h1>
+<p>Find me in app/views/pages/users.html.erb</p>
+
+<% if current_user.nome == nil %>
+  <p> Olá! Falta apenas algumas etapas para finalizar o seu cadastro...</p>
+  <%= form_for(current_user, url: registration_path(current_user)) do |f| %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :nome, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :matricula %>
+      <%= f.text_field :matricula %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Atualizar Cadastro" %>
+    </div>
+  <% end %>
+
+  <%= link_to "Requisição", requisicaos_path %>
+<% else %>
+
+<% end %>
