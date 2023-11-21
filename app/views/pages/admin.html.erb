@@ -1,2 +1,15 @@
 <h1>Pages#admin</h1>
 <p>Find me in app/views/pages/admin.html.erb</p>
+
+  <div id="requisicaos">
+    <% @requisicaos.each do |requisicao| %>
+      <%= render requisicao %>
+      <p>
+        <%= link_to "Show this requisicao", requisicao %>
+      </p>
+      
+      <p>
+        <%= link_to "Efetuar Cadastro", pages_admin_path %>
+      </p> 
+    <% end %>
+  </div>

@@ -8,5 +8,6 @@ class PagesController < ApplicationController
   end
 
   def admin
+    @requisicaos = Requisicao.all
   end
 end
