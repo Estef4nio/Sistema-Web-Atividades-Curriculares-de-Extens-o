@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :requisicaos
+  resources :requis
   resources :modalidades
   resources :atividades
   devise_for :admin, controllers: {
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
      get '/users/sign_out' => 'devise/sessions#destroy'     
   end
   root 'pages#home'
-  get 'pages/users'
+  get '/users', to: 'pages#users', as: 'user_profile'
   get 'pages/admin'
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

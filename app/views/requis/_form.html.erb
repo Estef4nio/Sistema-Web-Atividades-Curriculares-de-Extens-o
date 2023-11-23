@@ -1,0 +1,37 @@
+<%= simple_form_for @requi do |form| %>
+  <% if @requi.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@requi.errors.count, "error") %> prohibited this requi from being saved:</h2>
+
+      <ul>
+        <% @requi.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :titulo, style: "display: block" %>
+    <%= form.text_field :titulo %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :file, style: "display: block" %>
+    <%= form.file_field :file %>
+  </div>
+
+  <div>
+    <%= form.collection_select :atividade_id, @atividade, :id, :nome, prompt: "Selecione a atividade" %>
+    <%= form.collection_select :modalidade_id, @modalidade, :id, :nome, prompt: "Selecione a modalidade" %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

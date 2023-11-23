@@ -1,0 +1,12 @@
+<% if requi.file.attached? %>
+  <div class="row">
+    <% if requi.file.image? %>
+      <div class="message-image-container">
+        <%= image_tag(requi.file, class:"message-image") %>
+      </div>
+    <% else %>
+      <%= link_to requi.file.filename, url_for(requi.file), class:"message-file" %>
+    <% end %>
+  </div>
+
+<% end %>

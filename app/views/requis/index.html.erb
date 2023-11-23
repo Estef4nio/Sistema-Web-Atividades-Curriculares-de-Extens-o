@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Requis</h1>
+
+<div id="requis">
+  <% @requis.each do |requi| %>
+    <%= render requi %>
+    <p>
+      <%= link_to "Show this requi", requi %>
+    </p>
+  <% end %>
+</div>
+
+<p> <%= current_user.id %> </p>
+
+<%= link_to "New requi", new_requi_path %>

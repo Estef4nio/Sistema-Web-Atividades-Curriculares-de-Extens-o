@@ -1,4 +1,4 @@
 class Atividade < ApplicationRecord
   belongs_to :modalidade
-  belongs_to :user
+  has_many :requi
 end

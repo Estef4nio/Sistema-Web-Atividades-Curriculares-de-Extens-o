@@ -1,15 +1,16 @@
 <h1>Pages#admin</h1>
 <p>Find me in app/views/pages/admin.html.erb</p>
 
-  <div id="requisicaos">
-    <% @requisicaos.each do |requisicao| %>
-      <%= render requisicao %>
-      <p>
-        <%= link_to "Show this requisicao", requisicao %>
-      </p>
-      
-      <p>
-        <%= link_to "Efetuar Cadastro", pages_admin_path %>
-      </p> 
-    <% end %>
-  </div>
+<h1>Usuários</h1>
+<% @user.each do |user| %>
+  <p>Email: <%= user.email %></p>
+  <p>Nome: <%= user.nome %></p>
+  <p>Matrícula: <%= user.matricula %></p>
+  <% if user.requi != nil %>
+  <p>Requisicao: <%= render user.requi %></p>
+  <% end %>
+  <%= link_to "Home", root_path %>
+<% end %>
+
+
+

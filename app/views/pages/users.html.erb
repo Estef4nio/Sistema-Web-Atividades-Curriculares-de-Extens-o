@@ -1,25 +1,18 @@
-<h1>Pages#users</h1>
-<p>Find me in app/views/pages/users.html.erb</p>
+<h1>User Profile</h1>
+<p>Email: <%= @user.email %></p>
+<p>Nome: <%= @user.nome %></p>
+<p>Matrícula: <%= @user.matricula %></p>
 
-<% if current_user.nome == nil %>
-  <p> Olá! Falta apenas algumas etapas para finalizar o seu cadastro...</p>
-  <%= form_for(current_user, url: registration_path(current_user)) do |f| %>
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :nome, autofocus: true %>
-    </div>
+<% @user.requi.each do |requi| %>
+  <p>Requisicao:</p>
+  <%= render requi %>
 
-    <div class="field">
-      <%= f.label :matricula %>
-      <%= f.text_field :matricula %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Atualizar Cadastro" %>
-    </div>
+  <% if requi.atividade.present? %>
+    <p>Atividade: <%= requi.atividade.nome %></p>
   <% end %>
-
-  <%= link_to "Requisição", requisicaos_path %>
-<% else %>
-
+  <% if requi.modalidade.present? %>
+    <p>Modalidade: <%= requi.modalidade.nome %></p>
+  <% end %>
 <% end %>
+
+<%= link_to "Nova requisição", new_requi_path %>
