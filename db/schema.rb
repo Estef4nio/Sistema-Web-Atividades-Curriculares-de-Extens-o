@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_22_225929) do
+ActiveRecord::Schema.define(version: 2023_11_24_194853) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2023_11_22_225929) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "modalidade_id", null: false
+    t.integer "horas"
     t.index ["modalidade_id"], name: "index_atividades_on_modalidade_id"
   end
 
@@ -76,6 +77,8 @@ ActiveRecord::Schema.define(version: 2023_11_22_225929) do
     t.boolean "verify"
     t.integer "atividade_id"
     t.integer "modalidade_id"
+    t.integer "horas"
+    t.boolean "approved"
     t.index ["atividade_id"], name: "index_requis_on_atividade_id"
     t.index ["modalidade_id"], name: "index_requis_on_modalidade_id"
     t.index ["user_id"], name: "index_requis_on_user_id"
@@ -105,6 +108,8 @@ ActiveRecord::Schema.define(version: 2023_11_22_225929) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "nome"
     t.string "matricula"
+    t.integer "carga_horaria"
+    t.integer "total_horas"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

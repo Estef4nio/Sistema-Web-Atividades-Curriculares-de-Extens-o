@@ -2,9 +2,20 @@
 
 <%= render @requi %>
 
-<div>
-  <%= link_to "Edit this requi", edit_requi_path(@requi) %> |
-  <%= link_to "Back to requis", requis_path %>
 
-  <%= button_to "Destroy this requi", @requi, method: :delete %>
+
+
+
+
+
+<div>
+  <% if admin_signed_in? %>
+    <%= link_to "Editar requisicao", edit_requi_path(@requi) %> |
+    <%= link_to "Voltar para requisicoes", requis_path %>
+
+    <%= button_to "Excluir requisicao", @requi, method: :delete %>
+  <% elsif user_signed_in? %>
+    <%= link_to "Back to User Profile", user_profile_path %>
+  <% end %>
 </div>
+<%= link_to "Home", root_path %>

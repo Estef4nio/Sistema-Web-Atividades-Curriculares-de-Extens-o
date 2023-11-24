@@ -1,16 +1,35 @@
 <h1>Pages#admin</h1>
 <p>Find me in app/views/pages/admin.html.erb</p>
 
-<h1>Usuários</h1>
-<% @user.each do |user| %>
-  <p>Email: <%= user.email %></p>
-  <p>Nome: <%= user.nome %></p>
-  <p>Matrícula: <%= user.matricula %></p>
-  <% if user.requi != nil %>
-  <p>Requisicao: <%= render user.requi %></p>
+  <h1>Usuários</h1>
+  <% @user.each do |user| %>
+    <p>Email: <%= user.email %></p>
+    <p>Nome: <%= user.nome %></p>
+    <p>Matrícula: <%= user.matricula %></p>
+
+    <% if user.requi.present? %>
+      <% user.requi.each do |requisicao| %>
+        <p>Requisicao: <%= render requisicao %></p>
+
+        <% if requisicao.verify.nil? %>
+          <%= form_with model: requisicao, url: approve_requi_path(requisicao), method: :patch, local: true do |form| %>
+            <%= form.submit "Aprovar" %>
+          <% end %>
+
+          <%= form_with model: requisicao, url: reject_requi_path(requisicao), method: :patch, local: true do |form| %>
+            <%= form.submit "Recusar" %>
+          <% end %>
+          
+        <% elsif requisicao.verify? %>
+          <p>Requisição Aprovada</p>
+        <% else %>
+          <p>Requisição Recusada</p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= link_to "Home", root_path %>
   <% end %>
-  <%= link_to "Home", root_path %>
-<% end %>
 
 
 

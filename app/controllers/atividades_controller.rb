@@ -1,5 +1,5 @@
 class AtividadesController < ApplicationController
-  before_action :set_atividade, only: %i[ show edit update destroy ]
+  before_action :set_requi, only: [:show, :edit, :update, :destroy, :approve, :reject]
 
   # GET /atividades or /atividades.json
   def index
@@ -65,6 +65,6 @@ class AtividadesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def atividade_params
-      params.require(:atividade).permit(:nome, :cargaHorariaMaxima)
+      params.require(:atividade).permit(:nome, :cargaHorariaMaxima, :horas)
     end
 end

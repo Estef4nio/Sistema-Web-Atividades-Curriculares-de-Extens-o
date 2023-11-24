@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :requis
+  resources :requis do
+    member do
+      patch 'approve'
+      patch 'reject'
+
+    end
+  end
   resources :modalidades
   resources :atividades
   devise_for :admin, controllers: {
@@ -12,6 +18,11 @@ Rails.application.routes.draw do
   devise_scope :user do  
      get '/users/sign_out' => 'devise/sessions#destroy'     
   end
+  
+  devise_scope :admin do  
+     get '/admin/sign_out' => 'devise/sessions#destroy'     
+  end
+  
   root 'pages#home'
   get '/users', to: 'pages#users', as: 'user_profile'
   get 'pages/admin'

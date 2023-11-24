@@ -1,18 +1,19 @@
-<h1>User Profile</h1>
+<h1>Perfil do Usuário </h1>
 <p>Email: <%= @user.email %></p>
 <p>Nome: <%= @user.nome %></p>
 <p>Matrícula: <%= @user.matricula %></p>
+<p>Horas: <%= @user.total_horas %>
 
+<p>Horas ACE I: <%= @user.total_horas_por_modalidade('ACE-1') %></p>
+<p>Horas ACE II: <%= @user.total_horas_por_modalidade('ACE-2') %></p>
+<p>Horas ACE III: <%= @user.total_horas_por_modalidade('ACE-3') %></p> 
+
+  
 <% @user.requi.each do |requi| %>
   <p>Requisicao:</p>
   <%= render requi %>
 
-  <% if requi.atividade.present? %>
-    <p>Atividade: <%= requi.atividade.nome %></p>
-  <% end %>
-  <% if requi.modalidade.present? %>
-    <p>Modalidade: <%= requi.modalidade.nome %></p>
-  <% end %>
 <% end %>
 
 <%= link_to "Nova requisição", new_requi_path %>
+<%= link_to "Home", root_path %>
