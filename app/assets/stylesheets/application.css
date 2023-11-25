@@ -1,15 +1,68 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Seus meta tags e links para os estilos externos aqui -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu Título</title>
+  <!-- Links para Bootstrap ou outros estilos externos -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Seus estilos internos aqui -->
+  <style>
+    /* Seu código CSS modificado */
+    body {
+      background: #f6f5f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Montserrat', sans-serif;
+      height: 100vh;
+      margin: -20px 0 50px;
+    }
+
+    h1 {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    /* ... Outros estilos ... */
+
+    form {
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 30px;
+      height: 100%;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.1), 
+                  0 10px 10px rgba(0,0,0,0.1);
+      position: relative; /* Adicionei isso para posicionamento relativo */
+    }
+
+    form h2 {
+      color: #343a40; /* Cor do texto */
+      margin-bottom: 20px; /* Espaçamento abaixo do título */
+    }
+
+    /* ... Outros estilos ... */
+  </style>
+</head>
+<body>
+
+  <form>
+    <h2>Login</h2>
+    <!-- Seus campos de formulário e outros elementos aqui -->
+  </form>
+
+  <!-- Seus scripts e links para scripts aqui -->
+
+</body>
+</html>

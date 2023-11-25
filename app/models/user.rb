@@ -25,10 +25,6 @@ class User < ApplicationRecord
 
   def total_horas
     self.requi.sum(:horas)
-  end
-
-
-    
-  
+  end  
   
 end
