@@ -1,35 +1,128 @@
-<h1>Pages#admin</h1>
-<p>Find me in app/views/pages/admin.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administração</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
 
-  <h1>Usuários</h1>
-  <% @user.each do |user| %>
-    <p>Email: <%= user.email %></p>
-    <p>Nome: <%= user.nome %></p>
-    <p>Matrícula: <%= user.matricula %></p>
+    header {
+      background-color: #343a40;
+      color: #ffffff;
+      padding: 1rem;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
 
-    <% if user.requi.present? %>
-      <% user.requi.each do |requisicao| %>
-        <p>Requisicao: <%= render requisicao %></p>
+    section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
 
-        <% if requisicao.verify.nil? %>
-          <%= form_with model: requisicao, url: approve_requi_path(requisicao), method: :patch, local: true do |form| %>
-            <%= form.submit "Aprovar" %>
+    h1 {
+      color: #343a40;
+      margin-bottom: 1rem;
+    }
+
+    .user-info {
+      margin-bottom: 1rem;
+    }
+
+    .requisicao {
+      border: 1px solid #dee2e6;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .requisicao h3 {
+      color: #343a40;
+      margin-bottom: 0.5rem;
+    }
+
+    .requisicao p {
+      margin: 0;
+    }
+
+    .btn {
+      border-radius: 8px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Administração</h1>
+  </header>
+
+  <section>
+    <h1>Usuários</h1>
+
+    <% @user.each do |user| %>
+      <div class="user-info">
+        <p>Email: <%= user.email %></p>
+        <p>Nome: <%= user.nome %></p>
+        <p>Matrícula: <%= user.matricula %></p>
+
+        <% if user.requi.present? %>
+          <% user.requi.each do |requisicao| %>
+            <div class="requisicao">
+              <h3>Requisição</h3>
+              <%= render requisicao %>
+
+              <% if requisicao.verify.nil? %>
+                <%= form_with model: requisicao, url: approve_requi_path(requisicao), method: :patch, local: true do |form| %>
+                  <%= form.submit "Aprovar", class: "btn btn-success" %>
+                <% end %>
+
+                <%= form_with model: requisicao, url: reject_requi_path(requisicao), method: :patch, local: true do |form| %>
+                  <%= form.submit "Recusar", class: "btn btn-danger" %>
+                <% end %>
+
+              <% elsif requisicao.verify? %>
+                <p class="text-success">Requisição Aprovada</p>
+              <% else %>
+                <p class="text-danger">Requisição Recusada</p>
+              <% end %>
+            </div>
           <% end %>
-
-          <%= form_with model: requisicao, url: reject_requi_path(requisicao), method: :patch, local: true do |form| %>
-            <%= form.submit "Recusar" %>
-          <% end %>
-          
-        <% elsif requisicao.verify? %>
-          <p>Requisição Aprovada</p>
-        <% else %>
-          <p>Requisição Recusada</p>
         <% end %>
-      <% end %>
+      </div>
     <% end %>
+    <%= link_to "Home", root_path, class: "btn btn-primary" %>
+  </section>
 
-    <%= link_to "Home", root_path %>
-  <% end %>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-
+</body>
+</html>

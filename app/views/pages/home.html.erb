@@ -1,26 +1,193 @@
-  <h1>Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
+                                                                                <!DOCTYPE html>
+                                                                                <html lang="en">
+                                                                                <head>
+                                                                                  <meta charset="UTF-8">
+                                                                                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                                                                  <title>Sistema ACE</title>
+                                                                                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                                                                                  <style>
+                                                                                    body {
+                                                                                      font-family: 'Arial', sans-serif;
+                                                                                      margin: 0;
+                                                                                      padding: 0;
+                                                                                      background-color: #f8f9fa;
+                                                                                      display: flex;
+                                                                                      flex-direction: column;
+                                                                                      min-height: 100vh;
+                                                                                    }
 
-  <h3>User Links</h3>
-  <% if current_user %>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
-    <%= link_to "Edit Registration", edit_user_registration_path %>
+                                                                                    header {
+                                                                                      background-color: #343a40;
+                                                                                      color: #ffffff;
+                                                                                      padding: 1rem;
+                                                                                      border-bottom-left-radius: 10px;
+                                                                                      border-bottom-right-radius: 10px;
+                                                                                      display: flex;
+                                                                                      justify-content: space-between;
+                                                                                      align-items: center;
+                                                                                    }
+
+                                                                                    nav ul {
+                                                                                      list-style: none;
+                                                                                      display: flex;
+                                                                                      gap: 1rem;
+                                                                                      margin: 0;
+                                                                                    }
+
+                                                                                    nav ul li {
+                                                                                      font-size: 1.2rem;
+                                                                                    }
+
+                                                                                    .user-links, .admin-links {
+                                                                                      display: flex;
+                                                                                      gap: 1rem;
+                                                                                      align-items: center;
+                                                                                      margin-top: 1rem;
+                                                                                    }
+
+                                                                                    .user-links a, .admin-links a {
+                                                                                      text-decoration: none;
+                                                                                      color: #ffffff;
+                                                                                      transition: color 0.3s;
+                                                                                    }
+
+                                                                                    .user-links a.btn, .admin-links a.btn {
+                                                                                      transition: background-color 0.3s;
+                                                                                    }
+
+                                                                                    .user-links a.btn:hover, .admin-links a.btn:hover {
+                                                                                      background-color: #ffffff;
+                                                                                      color: #343a40;
+                                                                                    }
+
+                                                                                    .main-content {
+                                                                                      flex: 1;
+                                                                                      max-width: 800px;
+                                                                                      margin: 2rem auto;
+                                                                                      padding: 2rem;
+                                                                                      background-color: #ffffff;
+                                                                                      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                                                                      border-radius: 10px;
+                                                                                      text-align: center;
+                                                                                    }
+
+                                                                                    h1 {
+                                                                                      color: #343a40;
+                                                                                    }
+
+                                                                                    /* Adicionando um estilo mais atraente */
+                                                                                    .btn {
+                                                                                      border-radius: 8px;
+                                                                                    }
+
+                                                                                    .btn-primary {
+                                                                                      background-color: #007bff;
+                                                                                      border-color: #007bff;
+                                                                                    }
+
+                                                                                    .btn-success {
+                                                                                      background-color: #28a745;
+                                                                                      border-color: #28a745;
+                                                                                    }
+
+                                                                                    .btn-warning {
+                                                                                      background-color: #ffc107;
+                                                                                      border-color: #ffc107;
+                                                                                    }
+
+                                                                                    .btn-danger {
+                                                                                      background-color: #dc3545;
+                                                                                      border-color: #dc3545;
+                                                                                    }
+
+                                                                                    /* Adicionando um pouco de espaçamento */
+                                                                                    body, header, .main-content {
+                                                                                      padding: 1rem;
+                                                                                    }
+
+                                                                                    header, .user-links, .admin-links {
+                                                                                      margin-bottom: 1rem;
+                                                                                    }
+
+                                                                                    /* Estilo para os botões no rodapé */
+                                                                                    footer {
+                                                                                      margin-top: auto;
+                                                                                      background-color: #343a40;
+                                                                                      padding: 1rem;
+                                                                                      border-top-left-radius: 10px;
+                                                                                      border-top-right-radius: 10px;
+                                                                                      display: flex;
+                                                                                      justify-content: center;
+                                                                                    }
+
+                                                                                    footer a {
+                                                                                      color: #ffffff;
+                                                                                      text-decoration: none;
+                                                                                      margin: 0 1rem;
+                                                                                      font-size: 1.2rem;
+                                                                                    }
+
+                                                                                    .user-label, .admin-label {
+                                                                                      color: #ffffff;
+                                                                                      font-size: 1rem;
+                                                                                      margin-right: 0.5rem;
+                                                                                      font-weight: bold;
+                                                                                    }
+              </style>
+                                                                                </head>
+                                                                              <body>
+
+                                                                                  <header>
+                                                                                    <nav>
+                                                                                      <ul>
+
+                                                                                      </ul>
+                                                                                    </nav>
+
+  <% if user_signed_in? %>                                        
+    <div class="user-links">
+      <div>
+        <p class="user-label">Links Usuário</p>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+        <%= link_to "Edit Registration", edit_user_registration_path, class: "btn btn-warning" %>
+      </div>
+    </div>
   <% else %>
-    <%= link_to "Sign up", new_user_registration_path %>
-    <%= link_to "Sign in", new_user_session_path %>
+    <div class="user-links">
+      <div>
+        <p class="user-label">Usuário</p>
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+        <%= link_to "Sign In", new_user_session_path, class: "btn btn-success" %>
+      </div>
+    </div>
   <% end %>
 
-  <% if admin_signed_in? %>
-    <h3>Admin Links</h3>
-    <%= link_to "Sign out", destroy_admin_session_path, method: :delete, data: { turbo_method: :delete } %>
-    <%= link_to "Edit Registration", edit_admin_registration_path %>
-  <% elsif !user_signed_in? %>
-    <h3>Admin Links</h3>
-    <%= link_to "Sign up", new_admin_registration_path %>
-    <%= link_to "Sign in", new_admin_session_path %>
-  <% end %>
+                                                                                      <% if admin_signed_in? || !user_signed_in? %>
+                                                                                        <div class="admin-links">
+                                                                                          <p class="admin-label">Links Admin</p>
+                                                                                          <% if admin_signed_in? %>
+                                                                                            <%= link_to "Sign out", destroy_admin_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
+                                                                                            <%= link_to "Edit Registration", edit_admin_registration_path, class: "btn btn-warning" %>
+                                                                                          <% else %>
+                                                                                            <%= link_to "Sign up", new_admin_registration_path, class: "btn btn-primary" %>
+                                                                                            <%= link_to "Sign in", new_admin_session_path, class: "btn btn-success" %>
+                                                                                          <% end %>
+                                                                                        </div>
+                                                                                      <% end %>
+                                                                                    </div>
+                                                                                  </header>
 
-  <h3>Page Links </h3>
-  <%= link_to "Home", root_path %>
-  <%= link_to "Users", user_profile_path %>
-  <%= link_to "Admin", pages_admin_path %>
+                                                                                  <main>
+                                                                                    <section class="main-content">
+                                                                                      <h1>Bem vindx ao Sistema ACE</h1>
+                                                                                    </section>
+                                                                                  </main>
+
+                                                                                  <footer>
+                                                                                    <%= link_to "Home", root_path, class: "btn btn-outline-light" %>
+                                                                                    <%= link_to "Users", user_profile_path, class: "btn btn-outline-light" %>
+                                                                                    <%= link_to "Admin", pages_admin_path, class: "btn btn-outline-light" %>
+                                                                                  </footer>
+
+                                                                                </body>
+                                                                                </html>

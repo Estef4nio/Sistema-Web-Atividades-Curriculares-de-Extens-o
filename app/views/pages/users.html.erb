@@ -1,19 +1,105 @@
-<h1>Perfil do Usuário </h1>
-<p>Email: <%= @user.email %></p>
-<p>Nome: <%= @user.nome %></p>
-<p>Matrícula: <%= @user.matricula %></p>
-<p>Horas: <%= @user.total_horas %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Usuário</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
 
-<p>Horas ACE I: <%= @user.total_horas_por_modalidade('ACE-1') %></p>
-<p>Horas ACE II: <%= @user.total_horas_por_modalidade('ACE-2') %></p>
-<p>Horas ACE III: <%= @user.total_horas_por_modalidade('ACE-3') %></p> 
+    header {
+      background-color: #ffffff;
+      color: #ffffff;
+      padding: 1rem;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      text-align: center;
+      margin-bottom: 1rem; /* Adicionado para espaçamento entre o header e o conteúdo */
+    }
 
-  
-<% @user.requi.each do |requi| %>
-  <p>Requisicao:</p>
-  <%= render requi %>
+    section {
+      max-width: 800px;
+      margin: 0 auto; /* Alterado para 0 para centralizar */
+      padding: 2rem;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
 
-<% end %>
+    h1 {
+      color: #343a40;
+      margin-bottom: 1rem; /* Adicionado para espaçamento entre o título e o conteúdo */
+    }
 
-<%= link_to "Nova requisição", new_requi_path %>
-<%= link_to "Home", root_path %>
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      border-radius: 8px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+
+    .btn-outline-dark {
+      color: #343a40;
+      border-color: #343a40;
+    }
+
+    .btn-outline-dark:hover {
+      background-color: #343a40;
+      color: #ffffff;
+    }
+
+    .requisicao {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Perfil do Usuário</h1> 
+        
+  </header>
+
+  <section>
+    <p><strong>Email:</strong> <%= @user.email %></p>
+    <p><strong>Nome:</strong> <%= @user.nome %></p>
+    <p><strong>Matrícula:</strong> <%= @user.matricula %></p>
+    <p><strong>Horas:</strong> <%= @user.total_horas %></p>
+
+    <p><strong>Horas ACE I:</strong> <%= @user.total_horas_por_modalidade('ACE-1') %></p>
+    <p><strong>Horas ACE II:</strong> <%= @user.total_horas_por_modalidade('ACE-2') %></p>
+    <p><strong>Horas ACE III:</strong> <%= @user.total_horas_por_modalidade('ACE-3') %></p>
+
+    <% @user.requi.each do |requi| %>
+      <div class="requisicao">
+        <p><strong>Requisicao:</strong></p>
+        <%= render requi %>
+      </div>
+    <% end %>
+
+    <a href="<%= new_requi_path %>" class="btn btn-primary">Nova requisição</a>
+    <%= link_to "Home", root_path, class: "btn btn-outline-dark" %>
+  </section>
+
+</body>
+</html>
