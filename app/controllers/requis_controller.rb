@@ -50,7 +50,6 @@ class RequisController < ApplicationController
   # POST /requis or /requis.json
   def create
     @requi = Requi.new(requi_params)
-     @requi.approved = false ################
 
 
 
@@ -98,6 +97,6 @@ class RequisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def requi_params
-      params.require(:requi).permit(:titulo, :user_id, :atividade_id, :modalidade_id, :file, :horas) ###############
+      params.require(:requi).permit(:titulo, :user_id, :atividade_id, :modalidade_id, :file, :horas) 
     end
 end
