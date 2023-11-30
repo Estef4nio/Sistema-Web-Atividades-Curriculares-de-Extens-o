@@ -22,11 +22,6 @@
   </div>
 
   <div>
-    <%= form.label :file, style: "display: block" %>
-    <%= form.file_field :file %>
-  </div>
-
-  <div>
    <%= form.collection_select :modalidade_id, @modalidade, :id, :nome, prompt: "Selecione a modalidade" %>
   #  <%= form.grouped_collection_select :atividade_id, @modalidade, :atividade, :nome, :id, :nome, { prompt: "Selecione a atividade" }, { class: 'atividade-select' } %>
 </div>
@@ -36,7 +31,12 @@
   <%= form.label :horas, style: "display: block" %>
   <%= form.number_field :horas, min: 1 %>
   </div>
+  
 
+  <div>
+    <%= form.label :file, style: "display: block" %>
+    <%= form.file_field :file %>
+  </div>
 
   <div>
     <%= form.submit %>

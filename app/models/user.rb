@@ -7,13 +7,6 @@ class User < ApplicationRecord
   has_many :requi
 
   
-#############
-  #def carga_horaria_aprovada 
-  #self.requi.where(verify: true).sum(:horas)
-  #end
-  ###############
-
-  
   def total_horas_por_atividade(atividade)
     self.requi.joins(:atividade).where(atividades: { nome: atividade }).sum(:horas)
   end
@@ -25,10 +18,6 @@ class User < ApplicationRecord
 
   def total_horas
     self.requi.sum(:horas)
-  end
-
-
-    
-  
+  end  
   
 end

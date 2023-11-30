@@ -1,17 +1,41 @@
-<p style="color: green"><%= notice %></p>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Requisições</title>
+    <style>
+      /* Seu estilo CSS atual */
+    </style>
+  </head>
+  <body>
 
-<h1>Requis</h1>
+    <!-- Seu conteúdo atual -->
 
-<div id="requis">
-  <% @requis.each do |requi| %>
-    <%= render requi %>
-    <p>
-      <%= link_to "Show this requi", requi %>
-    </p>
-  <% end %>
-</div>
+    <div id="requisicoes">
+      <!-- Loop sobre suas requisições -->
+      <% total_horas = 0 %>
+      <% @requis.each do |requi| %>
+        <div class="requisicao">
+          <%= render requi %>
+          <p>
+            <%= link_to "Ver Detalhes", requi, class: "btn btn-primary" %>
+          </p>
+        </div>
 
+        <!-- Somar as horas ao total -->
+        <% total_horas += requi.horas %>
+      <% end %>
+    </div>
 
+    <!-- Adicionar o somador total no final -->
+    <div style="text-align: center;">
+      <p>Total de Horas: <%= total_horas %></p>
+      <%= link_to "Nova Requisição", new_requi_path, class: "btn btn-success" %>
+      <%= link_to "Home", root_path, class: "btn btn-primary" %>
+    </div>
 
-<%= link_to "New requi", new_requi_path %>
-<%= link_to "Home", root_path %>
+    <!-- Seu rodapé atual -->
+
+  </body>
+  </html>
