@@ -91,6 +91,7 @@
         <p>Email: <%= user.email %></p>
         <p>Nome: <%= user.nome %></p>
         <p>Matrícula: <%= user.matricula %></p>
+
         <p><strong>Horas:</strong> <%= user.total_horas %></p>
 
         <p><strong>Horas ACE I:</strong> <%= user.total_horas_por_modalidade('ACE-1') %></p>
@@ -105,6 +106,7 @@
                 <%= render requisicao %>
               <% end %>
       
+
               <% if requisicao.verify.nil? %>
                 <%= form_with model: requisicao, url: approve_requi_path(requisicao), method: :patch, local: true do |form| %>
                   <%= form.submit "Aprovar", class: "btn btn-success" %>
